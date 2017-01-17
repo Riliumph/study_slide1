@@ -244,13 +244,12 @@ Google Shell Style Guide
 
 |||||||||||||||
 
-### bash改善の構成
+### この４本立てでやるよ！
 - - -
 - aliasコマンドでオプションをデフォルトで
 - bash関数で処理を自動化
 - shoptで隠された力を開放する
 - GNU readlineで闇の力も開放する
-の４本立てです。
 
 ------------------------------------------------------------
 
@@ -263,23 +262,21 @@ Google Shell Style Guide
 
 ### human aliasesを重視する
 - - -
-<div style="text-align: left;">
 “人に勧める”なら、それが何をするか分かるコマンド名にしよう。  
 <br>
 gitならこの人がオススメ  
 Human Git Aliases  
 http://gggritso.com/human-git-aliases
-</div>
 
 |||||||||||||||
 
 ### 対象外：短縮"するだけ"のコマンド
 - - -
-<div style="text-align: left;">
 指の負担を緩和してくれ短縮コマンドは素晴らしい。  
 しかし「短縮するだけ」のことに他人の意思や技巧は必要ない。  
+<font style="color: yellow; font-size: 1.5em">
 各個人好きに短くしてください。  
-</div>
+</font>
 
 |||||||||||||||
 
@@ -419,7 +416,6 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 |--format=across/vertical|並び順を横方向もしくは縦方向に指定する|
 |--time-style=""|日付表記を任意に指定する。（dateコマンドと同様に指定する）|
 
-|||||||||||||||
 ------------------------------------------------------------
 
 ### cdしたら自動でlsする
@@ -725,13 +721,14 @@ $ sudo apt-get install trash-cli
 
 ### あとはAliasしておく
 - - -
+
 ```bash
-if which trash ; then
+if which trash &> /dev/null ; then
 	alias rm='trash-put'
 else
 	alias rm='rm -Iv'
 fi
-
+```
 ------------------------------------------------------------
 
 ### shoptをざっと紹介
