@@ -194,16 +194,17 @@ bash依存症の会社では無理ぽよ？
 <font style="color: yellow; font-size: 1.5em">
 Google Shell Style Guide  
 </font>
-にできるだけ準拠させています。
+に準拠させています。  
+※できてなかったらツッコミお願いします。
 
 |||||||||||||||
 
 ### この４本立てでやるよ！
 - - -
-- aliasコマンドでオプションをデフォルトで
+- aliasコマンドでオプションをデフォルト化
 - bash関数で処理を自動化
 - shoptで隠された力を開放する
-- GNU readlineで闇の力も開放する
+- ターミナルGNU readlineで闇の力も開放する
 
 ------------------------------------------------------------
 
@@ -226,7 +227,7 @@ http://gggritso.com/human-git-aliases
 
 ### 対象外：短縮"するだけ"のコマンド
 - - -
-指の負担を緩和してくれ短縮コマンドは素晴らしい。  
+指の負担を緩和してくれる短縮コマンドは素晴らしいです。  
 しかし「短縮するだけ」のことに他人の意思や技巧は必要ない。  
 <font style="color: yellow; font-size: 1.5em">
 各個人好きに短くしてください。  
@@ -268,7 +269,7 @@ gstで何が起こるのか？
 |-i        |上書きなどの際に確認が求められる|
 |-I        |大量に消すときは確認しない      |
 |-b        |上書き時に自動バックアップする  |
-|--suffix="xxx"|バックアップ処理時のサフィックスを指定する|
+|--suffix="xxx"<br>-S|バックアップ処理時のサフィックスを指定する<br>-Sの場合、環境変数SIMPLE_BACKUP_SUFFIXの設定値が使用される。<br>※未定義の場合、`~'|
 |-v        |処理内容を出力する|
 
 |||||||||||||||
@@ -296,7 +297,7 @@ gstで何が起こるのか？
 |-i        |検索時、大小文字の区別をつけない|
 |-M        |ファイル名、行数、進行率を表示する|
 |-N        |左に行番号を表示する|
-|-q        |エラーピープを無効化する|
+|-q<br>-Q  |特定のエラーピープを無効化する<br>すべてのエラーピープを無効化する|
 |-R        |色付きで表示する|
 |-s        |連続した空行を１行にまとめる|
 |-S        |折り返さない。横スクロールを可能にする|
@@ -320,6 +321,7 @@ $ less -gMNRqw make.log
 明日には忘れている自信がある。
 
 |||||||||||||||
+
 やる気を失くす前に  
 心が折れそうだ……  
 
@@ -329,6 +331,9 @@ $ less -gMNRqw make.log
 システムに覚えさせよう！
 
 |||||||||||||||
+
+### aliasコマンド
+- - -
 
 <font style="font-size: 1.0em">
 
@@ -340,11 +345,11 @@ alias less='less -gMNRqW'
 alias env='env | sort -f'
 
 if [[ -x /usr/bin/dircolors ]]; then # 色情報ファイルに実行権限があれば
-  alias ls='ls -FvX --color=auto --format=across --group-directories-first'
+  alias ls='ls -FvXx --color=auto --group-directories-first'
 else
-  alias ls='ls -FvX --format=across --group-directories-first'
+  alias ls='ls -FvXx --group-directories-first'
 fi
-alias la='ls AB'
+alias la='ls -AB'
 alias ll='clear && la -lh --color=auto --time-style="+%y-%m-%d %H:%M:%S"'
 
 #bashrcのリロード処理。分かり易い名前で！
@@ -372,9 +377,8 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 
 ------------------------------------------------------------
 
-### cdしたら自動でlsする
+### 関数で処理を自動化する
 - - -
-<img src="./img/bash/cdls.png"></img>
 
 |||||||||||||||
 
@@ -383,7 +387,6 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 1. cd解決時にディレクトリの内容を見せて欲しい。
 2. cdを引数なしで解決しても、HOMEへ戻りたくない。<br>
    <font style="color: yellow">※偉大なMacintoshは移動しない。  </font>
-3. lsをオシャレにしたい。
 
 |||||||||||||||
 
@@ -412,24 +415,26 @@ alias cd='no_arg_no_act_cd_ls'
 ### AND演算によるテクニック
 - - -
 
-<font style="font-size: 2.0em;">
+<div style="font-size: 2.0em;">
 
 ``` bash
 clear && \cd ${argv} && ls
 ```
 
-</font>
-<font style="font-size; 1.0em;">
-&&(AND)は、全コマンドが真の場合のみ演算する。
+</div>
+<div style="font-size: 1.0em;">
+論理積(AND)演算は、正格評価(strict evaluation)される。
 <br>
-1. cdが成功した場合、lsが実行される。  
-2. cdに失敗した場合、lsは実行されない。  
+1. clear実行 ->（成功）-> cd実行 ->（成功）-> ls実行  
+2. clear実行 ->（成功）-> cd実行 ->（失敗）
+3. clear実行 ->（失敗）
 
 |||||||||||||||
 
-lsコマンドに関して  
-`alias ls='xxx'`の後に、  
-あの関数を定義すると  
+**lsコマンドに関して**
+<br>
+<br>
+`alias ls='xxx'`の後に、あの関数を定義すると  
 aliasされたlsコマンドが適用される。
 
 
@@ -450,6 +455,8 @@ zshに若干近くなります。
 
 ### 解放する方法 - shoptとは？ -
 - - -
+
+<div style="font-size: 1.5em;">
 
 ```bash
 $ shopt           # オプション一覧が確認できる
