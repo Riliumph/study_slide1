@@ -437,7 +437,17 @@ clear && \cd ${argv} && ls
 `alias ls='xxx'`の後に、あの関数を定義すると  
 aliasされたlsコマンドが適用される。
 
+|||||||||||||||
 
+こんな感じの動き
+
+|||||||||||||||
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/cdls_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;">
+</div>
 
 ------------------------------------------------------------
 
@@ -492,7 +502,7 @@ shopt -s cdspell
 
 ### Git Branch名をターミナルに出す
 - - -
-<img src="./img/bash/cdls.png"></img>
+<img src="./img/bash/cdls_play.gif"></img>
 
 |||||||||||||||
 
