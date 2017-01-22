@@ -536,6 +536,23 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 い、今のはいったい何の呪文なんだ……？？
 <img src="./img/bash/prompt_wakaran.jpg" style="width: 40%"></img>
 
+|||||||||||||||
+
+な、何がなんだかよくわからねぇが  
+あんな感じで書けばいいんだな？
+<br>
+<br>
+あんなもの人が書くモノじゃねぇよ
+と思った人は、オマケをご参照ください。
+
+------------------------------------------------------------
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/etc/thank_you_for_listening_cool_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
+
 ------------------------------------------------------------
 
 ### 逃げるは恥じゃないし役に立つ
