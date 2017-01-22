@@ -479,24 +479,45 @@ $ shopt -u xxxxx  # xxxxxのオプションをOFFにする
 ### cdコマンドすら使わない
 - - - 
 ``` bash
-shpot -s audocd
+shopt -s audocd
 ```
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/autocd_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
+※builtin cdが動くのが難点。
 
-------------------------------------------------------------
+|||||||||||||||
 
-### 意図を組むシェル
+### 意図を組む移動
 - - -
 ```bash
 shopt -s cdspell
 ```
 
-------------------------------------------------------------
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/cdspell_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
+ ※builtin cdが動くのが難点。
+ 
+|||||||||||||||
+
+### ざっくり紹介
+- - -
+
+<font style="font-size: 0.75em;">
+
 |オプション名|内容|
 |:---------:|:---------------|
 |cdable_vars|見つからないディレクトリ名を変数名へ解釈する|
 |dotglob    |*の展開に.が含まれるようになる          |
 |extglob    |パターンマッチのワイルドカード表現が増える|
-|globstar   |Rubyのように**で該当ディレクトリ以下のすべてのディレクトリ、ファイルに再帰的にマッチする|
+|globstar   |**で起点以下のすべてのディレクトリ、ファイルに再帰的にマッチする<br>Rubyライク？|
+|etc...|
+
 
 ------------------------------------------------------------
 
