@@ -522,6 +522,99 @@ shopt -s cdspell
 |globstar   |**で起点以下のすべてのディレクトリ、ファイルに再帰的にマッチする<br>Rubyライク？|
 |etc...|
 
+------------------------------------------------------------
+
+### GNU readline
+- - -
+CUIプログラムにおいてコマンド履歴機能やTABキーによる補完機能を実現するのに使われるGPLライブラリ。  
+bashの補完時の処理を変更することができる。
+
+<font style="font-size: 1.5em;">
+
+```bash
+~/.inputrc # デフォルトでは、ここのファイルを見に行く
+INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
+```
+
+|||||||||||||||
+
+### bashの補完はコレがダメ
+- - -
+- 補完表示にtabを<font style="color: yellow">2回</font>も押す必要がある
+- tab連打で<font style="color: yellow">入力補完してくれない</font>  
+- <font style="color: yellow">色が付いてない</font>から良くわからない  
+- <font style="color: yellow">サフィックスがディレクトリだけ</font>っぽい  
+  ※ディレクトリへのシンボリックリンクも「/」が付く 
+
+|||||||||||||||
+
+### 設定例
+- - -
+
+``` bash:inputrc
+# readline対応ソフト全部に適応されるので「bashのみ」を条件に分岐しておく
+$if bash
+  # TABキーに「一覧表示から補完する関数」を割り当てる
+  TAB: menu-complete
+  # TAB１回目：補完一覧 / ２回目；補完開始
+  set show-all-if-ambiguous on
+  # 補完一覧を色付け
+  set colored-stats on
+  # 補完一覧にサフィックス付与
+  set visible-stats on
+  # シンボリックリンクには「@」を付与
+  set mark-symlinked-directories on
+$endif
+```
+
+
+|||||||||||||||
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/comletion_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:70%;"></img>
+</div>
+※readlineのリロードは「C-x, C-r」
+
+|||||||||||||||
+
+<font style="font-size: 0.75em;">
+
+|キー     |readline関数名   |内容        |
+|:-------:|:---------------:|:-----------|
+|C-b / ← |backward-char    |１文字戻る  |
+|C-f / → |forward-char     |１文字進む  |
+|M-f      |forward-word     |１単語進む  |
+|M-b      |backward-char    |１単語戻る  |
+|C-u      |unix-line-discard|カーソル以前の文字列を削除|
+|C-k      |kill-line        |カーソル以降の文字列を削除|
+|C-r / ↑ |reverse-search-history|履歴を後方検索|
+|C-s / ↓ |forward-search-history|履歴を前方検索|
+|C-l      |clear-screen     |ターミナルクリア|
+|M-l      |downcase-word    |直後の単語を小文字へ|
+|M-u      |upcase-word      |直後の単語を大文字に|
+|C-i / tab|complete         |適した単語を補完|
+|C-t      |transpose-chars  |前後の文字を入れ替える|
+
+|||||||||||||||
+
+他にも便利なのいっぱいあるけど、もうあきらめた。  
+調べてください。
+
+|||||||||||||||
+
+
+
+
+
+
+|||||||||||||||
+
+
+
+
+
 
 ------------------------------------------------------------
 
@@ -751,28 +844,3 @@ fi
 
 
 ------------------------------------------------------------
-
-### Reeadlineをざっと紹介
-- - -
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-b / ← |backward-char    |１文字戻る  |
-|C-f / → |forward-char     |１文字進む  |
-|M-f      |forward-word     |１単語進む  |
-|M-b      |backward-char    |１単語戻る  |
-|C-u      |unix-line-discard|カーソル以前の文字列を削除|
-|C-k      |kill-line        |カーソル以降の文字列を削除|
-|C-r / ↑ |reverse-search-history|履歴を後方検索|
-|C-s / ↓ |forward-search-history|履歴を前方検索|
-
-|||||||||||||||
-
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-l      |clear-screen     |ターミナルクリア|  
-|M-l      |downcase-word    |直後の単語を小文字へ|
-|M-u      |upcase-word      |直後の単語を大文字に|
-|C-i / tab|complete         |適した単語を補完|
-|C-t      |transpose-chars  |前後の文字を入れ替える|
-
-
