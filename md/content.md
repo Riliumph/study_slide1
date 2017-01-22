@@ -134,6 +134,7 @@ WebUIによる簡単設定は、まさにバファ〇ン
 fishはコマンドを覚えます。
 <br>
 <img src="./img/fish/autosuggestion.png"></img>
+
 |||||||||||||||
 
 ### 補完がVisual Studio
@@ -141,6 +142,7 @@ fishはコマンドを覚えます。
 まるでIDEのIntellisense
 <br>
 <img src="./img/fish/git.png" style="width:50%"></img>
+
 |||||||||||||||
 
 <font style="font-size: 1.5em">
@@ -504,7 +506,7 @@ shopt -s cdspell
      style="cursor: pointer;"></img>
 </div>
  ※builtin cdが動くのが難点。
- 
+
 |||||||||||||||
 
 ### ざっくり紹介
