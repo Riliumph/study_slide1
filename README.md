@@ -6,3 +6,6 @@
 - fish
 - bash
 の３つを適当に解説いれてみた
+
+### 発表リンク
+https://riliumph.github.io/study_slide1/
