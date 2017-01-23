@@ -413,16 +413,18 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 ``` bash
 no_arg_no_act_cd_ls()
 {
-  local -r argc=$#
-  if [[ ${argc} == 0 ]]; then
+  if [[ $# == 0 ]]; then
     return 1
-  elif [[ 1 < ${argc} ]]; then
+  elif [[ 1 < $# ]]; then
     echo "Too many args for cd command"
     return 1
   fi
-  local -r argv=$@
+  if [[ ! -e $1 ]]; then
+    echo "Not exist: $1"
+    return 1
+  fi
   # \cd => builtin cd
-  clear && \cd ${argv} && ls
+  clear && \cd $@ && ls
 }
 alias cd='no_arg_no_act_cd_ls'
 ```
@@ -435,7 +437,7 @@ alias cd='no_arg_no_act_cd_ls'
 <div style="font-size: 2.0em;">
 
 ``` bash
-clear && \cd ${argv} && ls
+clear && \cd $@ && ls
 ```
 
 </div>
@@ -744,23 +746,6 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 い、今のはいったい何の呪文なんだ……？？
 <img src="./img/bash/prompt_wakaran.jpg" style="width: 40%"></img>
 
-|||||||||||||||
-
-な、何がなんだかよくわからねぇが  
-あんな感じで書けばいいんだな？
-<br>
-<br>
-あんなもの人が書くモノじゃねぇよ
-と思った人は、オマケをご参照ください。
-
-------------------------------------------------------------
-
-<div><!-- divタグがないと以降のimgタグが正常に動かない-->
-<img src="./img/etc/thank_you_for_listening_cool_play.gif"
-     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
-     style="cursor: pointer;"></img>
-</div>
-
 ------------------------------------------------------------
 
 ### 逃げるは恥じゃないし役に立つ
@@ -782,7 +767,7 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 ってのはメンドウなので、諸君らに頑張ってもらうとして。  
 
 とりあえずは、  
-01とか37mとかいうのをパラメータでもらって  
+01とか37とかいうのをパラメータでもらって  
 中で組み上げて文字列を返せばいいよね？
 
 |||||||||||||||
@@ -791,16 +776,15 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 - - -
 ``` bash
 ### 制御シーケンスを作ってもらうよ！
-GetStyle ()
-{
-    local font_type=$1
-    local fg=$2
-    local bg=$3
-    case $# in
-        1) echo "\[\e[${font_type}\]";;
-        2) echo "\[\e[${font_type};${fg}\]";;
-        3) echo "\[\e[${font_type};${fg}\e[${bg}\]";;
-    esac
+GetStyle (){
+  local -r font_type=$1
+  local -r fg=$2
+  local -r bg=$3
+  case $# in
+    1) echo "\[\e[${font_type}\]";;
+    2) echo "\[\e[${font_type};${fg}\]";;
+    3) echo "\[\e[${font_type};${fg}\e[${bg}\]";;
+  esac
 }
 ```
 
@@ -809,39 +793,7 @@ shellではreturnは0～255の1byte範囲の値のみ
 
 |||||||||||||||
 
-``` bash
-source $BASH_ROOT/git-completion.bash
-source $BASH_ROOT/git-prompt.sh
-
-GetStyle ()
-{
-    local font_type=$1
-    local fg=$2
-    local bg=$3
-    case $# in
-        1) echo "\[\e[${font_type}\]";;               # must W-quatation
-        2) echo "\[\e[${font_type};${fg}\]";;         # must W-quatation
-        3) echo "\[\e[${font_type};${fg}\e[${bg}\]";; # must W-quatation
-    esac
-}
-
-GetPromptString ()
-{
-    local DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
-    local GIT_BRANCH='$(__git_ps1)'    # must single-quotation
-    local white=$(GetStyle 00 37m)
-    local B_lime=$(GetStyle 01 32m)
-    local yellow=$(GetStyle 00 33m)
-    local I_red=$(GetStyle 03 31m)
-    echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
-}
-
-PS1=$(GetPromptString)
-```
-
-------------------------------------------------------------
-
-### 補足：クォートの違い？
+### クォートの違い？
 - - -
 
 ``` bash
@@ -851,14 +803,48 @@ echo 'Single quote: ${HELLO}' # Single quote: ${HELLO}
 ```
 
 - ダブルクォート  
-  <font style="color:yellow">変数・関数を展開して</font>、文字列を認識する。
+  <font style="color:yellow">変数を展開して</font>、文字列を認識する。
   
 - シングルクォート  
   <font style="color:yellow">そのままの内容</font>を、文字列として認識する。
 
+|||||||||||||||
+
+``` bash
+source $BASH_ROOT/git-completion.bash
+source $BASH_ROOT/git-prompt.sh
+
+GetStyle (){
+  local -r font_type=$1
+  local -r fg=$2
+  local -r bg=$3
+  case $# in
+    1) echo "\[\e[${font_type}\]";;               # must W-quatation
+    2) echo "\[\e[${font_type};${fg}m\]";;         # must W-quatation
+    3) echo "\[\e[${font_type};${fg}m\e[${bg}m\]";; # must W-quatation
+  esac
+}
+
+GetPromptString (){
+  local -r DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
+  local -r GIT_BRANCH='$(__git_ps1)'    # must S-quotation
+  local -r white=$(GetStyle 00 37)
+  local -r B_lime=$(GetStyle 01 32)
+  local -r yellow=$(GetStyle 00 33)
+  local -r I_red=$(GetStyle 03 31)
+  echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
+}
+
+PS1=$(GetPromptString)
+```
+
 ------------------------------------------------------------
 
-もっと知りたかったらどうぞ
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/etc/thank_you_for_listening_cool_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
 
 ------------------------------------------------------------
 
