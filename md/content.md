@@ -141,9 +141,23 @@ fishはコマンドを覚えます。
 - - - 
 まるでIDEのIntellisense
 <br>
-<img src="./img/fish/git.png" style="width:50%"></img>
+<img src="./img/fish/comletion.gif" style="width:60%"></img>
 
 |||||||||||||||
+
+### デバッガの標準装備
+- - -
+
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/fish/debug.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;">
+</div>
+
+
+|||||||||||||||
+
 
 <font style="font-size: 1.5em">
 **欠点？**
@@ -172,12 +186,11 @@ bash依存症の会社では無理ぽよ？
 
 |||||||||||||||
 
-
+スーパーエンジニア達のつぶやき
+<br>
 <img src="./img/fish/002.png" style="width:40%"/>
 <br>
 <img src="./img/fish/001.png" style="width:40%"/>
-<br>
-スーパーエンジニア達もこう言ってます。
 
 ------------------------------------------------------------
 
