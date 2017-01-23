@@ -538,13 +538,35 @@ INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
 
 |||||||||||||||
 
+こういうのがreadlineの機能
+
+<font style="font-size: 0.75em;">
+
+|キー     |readline関数名   |内容        |
+|:-------:|:---------------:|:-----------|
+|C-b / ← |backward-char    |１文字戻る  |
+|C-f / → |forward-char     |１文字進む  |
+|M-f      |forward-word     |１単語進む  |
+|M-b      |backward-char    |１単語戻る  |
+|C-u      |unix-line-discard|カーソル以前の文字列を削除|
+|C-k      |kill-line        |カーソル以降の文字列を削除|
+|C-r / ↑ |reverse-search-history|履歴を後方検索|
+|C-s / ↓ |forward-search-history|履歴を前方検索|
+|C-l      |clear-screen     |ターミナルクリア|
+|C-i / tab|complete         |適した単語を補完|
+|etc..|
+
+|||||||||||||||
+
+
 ### bashの補完はコレがダメ
 - - -
+
 - 補完表示にtabを<font style="color: yellow">2回</font>も押す必要がある
 - tab連打で<font style="color: yellow">入力補完してくれない</font>  
 - <font style="color: yellow">色が付いてない</font>から良くわからない  
-- <font style="color: yellow">サフィックスがディレクトリだけ</font>っぽい  
-  ※ディレクトリへのシンボリックリンクも「/」が付く 
+- <font style="color: yellow">サフィックスがディレクトリだけ</font>っぽい<br>
+※ディレクトリへのシンボリックリンクも「/」が付く 
 
 |||||||||||||||
 
@@ -576,6 +598,44 @@ $endif
      style="cursor: pointer; width:70%;"></img>
 </div>
 ※readlineのリロードは「C-x, C-r」
+
+|||||||||||||||
+
+えっ？！  
+fishみたいにカーソル移動で  
+選択できないんですか！？
+
+|||||||||||||||
+
+……そんなこと言っちゃういじわるな人は  
+今すぐpecoを導入すればいいと思いますまる  
+<br>
+<br>
+※pecoはオマケで扱います。
+
+|||||||||||||||
+
+やってもいいかなって思うモノを列挙してみました。  
+じぶんでかくにんしてね？  
+<br>
+ここが詳しい  
+http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
+
+|||||||||||||||
+
+<font style="font-size: 0.75em;">
+
+|readline関数名         |内容            |
+|:---------------------:|:---------------|
+|completion-ignore-case |onならファイル名補完で大文字と小文字を無視する。|
+|completion-map-case    |onなら補完時に"-"と"_"を区別しない。|
+|expand-tilde|ワード補完の際にチルダを$HOMEの内容に展開する。
+|match-hidden-files<br>(default on)|.から始まるファイルも補完候補に加える。|
+|page-completions<br>(default on)  |候補が画面をはみ出すときにmoreライクなページ送りを利用する。|
+|print-completions-horizontally    |画面の下方向ではなく、水平方向にアルファベット順に並べて補完候補を表示する。|
+|show-all-if-unmodified|部分的な補完が出来ない場合でも補完する。<br>これはonにするべき。|
+|skip-completed-text   |被った部分を削除する。※＿はカーソル位置<br>ex) Make＿file -> (tab) -> ×Makefilefile　〇Makefile |
+
 
 |||||||||||||||
 
