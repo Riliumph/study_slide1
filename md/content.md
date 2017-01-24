@@ -3,6 +3,14 @@
 
 ------------------------------------------------------------
 
+### サマリ
+- - -
+
+- 色んなシェルの紹介
+- bashを改造する話
+
+------------------------------------------------------------
+
 ### シェルの種類
 - - -
 シェルっていっぱいありますよね。
@@ -28,7 +36,6 @@
 - - -
 一番多くのDistributionで使われている（？）  
 いわゆる、de facto standardなshell。  
-最近、頑張っているらしいです。  
 
 |||||||||||||||
 
@@ -38,36 +45,59 @@
 
 |||||||||||||||
 
-あとで、やるので詳細は省きます。  
+あとで、やるので以下略。  
 
 ------------------------------------------------------------
 
 ### 究極のシェル - zsh -
 - - -
-ズィーシェルっていいます。  
+ズィーシェル。  
 ダメ人間製造機  
 
 |||||||||||||||
 
-### オプションを調べたり覚えなくていい
+zには、アルファベット最後  
+つまり、究極という意味があるらしい
+
+|||||||||||||||
+
+………
+
+|||||||||||||||
+
+……ホントのことはwikiで調べてね？
+
+|||||||||||||||
+
+### 何が何でも補完する
 - - -
-「-」の後にtabキーで入力候補が出ます
+「-」の後にtabキーでhelpが見れる
 <img src="./img/zsh/comp.jpg" style="width:75%"/>
 
 |||||||||||||||
 
-### gitの選択branchが表示される
+### gitの選択branchを表示できる。
 - - -
 わざわざgit branchとかいらない。  
 <img src="./img/zsh/show_branch.jpg" style="width:50%"/>
 
 |||||||||||||||
 
+### 圧縮ファイルの中身が見れたり
+- - -
+
+<img src="./img/zsh/tarball.jpg" style="width:50%"/>
+
+
+|||||||||||||||
+
 他にも
 - bashとして振舞える(お前はいったい何なんだ  
 - コマンド履歴を複数ターミナルに共有できる  
+- ほとんどの処理にユーザーがhookできる  
 
 |||||||||||||||
+
 <font style="font-size: 1.5em">
 **何か裏があるんでしょ？**
 </font>
@@ -99,7 +129,18 @@
 
 |||||||||||||||
 
-つまり？
+キーを押すたびに外部コマンドを大量にコールし、
+
+|||||||||||||||
+
+ユーザーの快適性のためにと、マシン資源を食い荒らす
+
+|||||||||||||||
+
+コンピュータは人に使われるためにあるのだ  
+という理屈を地で行く  
+<br>
+まさに
 
 |||||||||||||||
 
@@ -141,7 +182,18 @@ fishはコマンドを覚えます。
 - - - 
 まるでIDEのIntellisense
 <br>
-<img src="./img/fish/git.png" style="width:50%"></img>
+<img src="./img/fish/comletion.gif" style="width:60%"></img>
+
+|||||||||||||||
+
+### デバッガの標準装備
+- - -
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/fish/debug_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;">
+</div>
 
 |||||||||||||||
 
@@ -156,7 +208,7 @@ fishはコマンドを覚えます。
 |||||||||||||||
 
 ……すいません。  
-あります。  
+あ、ありますよぅ。  
 
 |||||||||||||||
 
@@ -166,18 +218,21 @@ fishはコマンドを覚えます。
 <font style="color:yellow">**bashに互換性なし**</font>  
 ↓  
 bash script使う度に  
-fish上でbashを起動するのは大変ぽよー  
+fish上でbashを起動するのは大変  
 ↓  
 bash依存症の会社では無理ぽよ？  
 
 |||||||||||||||
 
-
+スーパーエンジニア達のつぶやき
+<br>
 <img src="./img/fish/002.png" style="width:40%"/>
 <br>
 <img src="./img/fish/001.png" style="width:40%"/>
-<br>
-スーパーエンジニア達もこう言ってます。
+
+------------------------------------------------------------
+
+#本題
 
 ------------------------------------------------------------
 
@@ -205,10 +260,10 @@ Google Shell Style Guide
 
 ### この４本立てでやるよ！
 - - -
-- aliasコマンドでオプションをデフォルト化
-- bash関数で処理を自動化
-- shoptで隠された力を開放する
-- ターミナルGNU readlineで闇の力も開放する
+- aliasでオプションをデフォルト化
+- 関数で処理を自動化
+- bashの隠された力を開放する
+- ついでに、闇の力も開放する
 
 ------------------------------------------------------------
 
@@ -233,6 +288,9 @@ http://gggritso.com/human-git-aliases
 - - -
 指の負担を緩和してくれる短縮コマンドは素晴らしいです。  
 しかし「短縮するだけ」のことに他人の意思や技巧は必要ない。  
+
+|||||||||||||||
+
 <font style="color: yellow; font-size: 1.5em">
 各個人好きに短くしてください。  
 </font>
@@ -244,6 +302,7 @@ http://gggritso.com/human-git-aliases
 - 「emacs」->「e」  
 macsの4文字を打つのが面倒だから短縮するという。  
 勝手にしてくれ。  
+<br>
 - 「git status」->「gst」  
 gstで何が起こるのか？  
 作った本人にしか分からなそうぽよ……
@@ -255,9 +314,13 @@ gstで何が起こるのか？
 
 |||||||||||||||
 
+<font style="font-size: 1.25em">
+
 唐突ですが
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 コマンドオプションって  
 覚えるの辛くないですか？
@@ -278,13 +341,14 @@ gstで何が起こるのか？
 
 |||||||||||||||
 
+<font style="font-size: 1.25em">
+
 まだ、わかる。  
-
-|||||||||||||||
-
 でも、メンドクサイ。  
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 打ち間違えした日には  
 **仕事する気**をロストしそう……
@@ -322,14 +386,20 @@ $ less -gMNRqw make.log
 
 |||||||||||||||
 
-明日には忘れている自信がある。
+<font style="color: yellow; font-size: 1.5em">
+
+**明日には忘れている自信がある。**
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 やる気を失くす前に  
 心が折れそうだ……  
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 そうだ！  
 システムに覚えさせよう！
@@ -354,7 +424,7 @@ else
   alias ls='ls -FvXx --group-directories-first'
 fi
 alias la='ls -AB'
-alias ll='clear && la -lh --color=auto --time-style="+%y-%m-%d %H:%M:%S"'
+alias ll='clear && la -lh --time-style="+%y-%m-%d %H:%M:%S"'
 
 #bashrcのリロード処理。分かり易い名前で！
 alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
@@ -381,8 +451,114 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 
 ------------------------------------------------------------
 
+### 閑話休題
+- - -
+
+|||||||||||||||
+
+みなさんは、ラ〇ュタの雷ってご存知ですか？
+
+|||||||||||||||
+
+### ラピ〇タの雷
+- - -
+<div style="text-align: left;">
+通称、バルス  
+Linux界隈に噂される魔の呪文（コマンド）  
+</div>
+
+<div style="font-size: 2.0em;">
+
+``` bash
+rm -rf /
+```
+
+|||||||||||||||
+
+Linuxのrmコマンドは、
+
+|||||||||||||||
+
+**対象は全員死すべし**  
+**慈悲はない**  
+
+|||||||||||||||
+
+という恐ろしいコマンド。
+
+|||||||||||||||
+
+バルス（rm -rf /）コマンドは  
+ラピュ〇崩壊の呪文の名の通り、  
+Linuxを崩壊させてくれやがります。
+
+|||||||||||||||
+
+なんで、自爆するのか？
+
+|||||||||||||||
+
+あっ
+
+<img src="./img/keybord.jpg" style="width:75%"/>
+
+|||||||||||||||
+
+あっあっあっ
+
+<img src="./img/keybord2.jpg" style="width:75%"/>
+
+|||||||||||||||
+
+**「.」と「/」を押し間違える人続出？**
+
+|||||||||||||||
+
+やってみたい？  
+これを読んでから、VMでやりなさい。  
+http://lambdaops.com/rm-rf-remains/
+
+|||||||||||||||
+
+### 恐ろしい呪文から身を守る
+- - -
+
+ゴミ箱へ移動させるコマンドをインストールしておく  
+
+<font style="font-size: 1.5em;">
+
+```bash
+$ sudo apt-get install trash-cli
+```
+
+|||||||||||||||
+
+### あとはAliasしておく
+- - -
+絶対に、ゴミ箱ツールかrmの保護エイリアスはやっておこう！  
+<br>
+
+<font style="font-size: 1.5em;">
+
+```bash
+if which trash &> /dev/null ; then
+	alias rm='trash-put'
+else
+	alias rm='rm -Iv'
+fi
+```
+
+------------------------------------------------------------
+
 ### 関数で処理を自動化する
 - - -
+|||||||||||||||
+
+cd と ls のコマンドはいつでも使います。
+
+|||||||||||||||
+
+でも、cdしてlsするのは苦行な気がします。
 
 |||||||||||||||
 
@@ -398,20 +574,22 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 - - -
 
 ``` bash
-no_arg_no_act_cd_ls()
+custom_cdls()
 {
-  local -r argc=$#
-  if [[ ${argc} == 0 ]]; then
+  if [[ $# == 0 ]]; then
     return 1
-  elif [[ 1 < ${argc} ]]; then
+  elif [[ 1 < $# ]]; then
     echo "Too many args for cd command"
     return 1
   fi
-  local -r argv=$@
+  if [[ ! -e $1 ]]; then
+    echo "Not exist: $1"
+    return 1
+  fi
   # \cd => builtin cd
-  clear && \cd ${argv} && ls
+  clear && \cd $@ && ls
 }
-alias cd='no_arg_no_act_cd_ls'
+alias cd='custom_cdls'
 ```
 
 |||||||||||||||
@@ -422,7 +600,7 @@ alias cd='no_arg_no_act_cd_ls'
 <div style="font-size: 2.0em;">
 
 ``` bash
-clear && \cd ${argv} && ls
+clear && \cd $@ && ls
 ```
 
 </div>
@@ -452,6 +630,86 @@ aliasされたlsコマンドが適用される。
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
      style="cursor: pointer;">
 </div>
+
+------------------------------------------------------------
+
+### builtin command
+- - -
+
+|||||||||||||||
+
+さっきの改造cdコマンドで使った
+\cdってなんぞ？
+
+|||||||||||||||
+
+``` bash
+custom_cdls()
+{
+  if [[ $# == 0 ]]; then
+    return 1
+  elif [[ 1 < $# ]]; then
+    echo "Too many args for cd command"
+    return 1
+  fi
+  if [[ ! -e $1 ]]; then
+    echo "Not exist: $1"
+    return 1
+  fi
+  # \cd => builtin cd
+  clear && \cd $@ && ls
+}
+alias cd='custom_cdls'
+```
+
+|||||||||||||||
+
+よくわからないので、  
+これを通常のcdに書き換えてみます。
+
+|||||||||||||||
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/builtin_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;">
+</div>
+
+|||||||||||||||
+
+コ、コントロールが返ってこない……！
+
+|||||||||||||||
+
+### 無限再帰
+- - -
+
+``` bash
+custom_cdls()
+{
+  （略）
+  clear && cd $@ && ls
+}
+alias cd='custom_cdls'
+```
+
+1. このコマンドをcdで実行する
+2. alias cdがコールされる
+3. custom_cdls関数がコールされる。
+4. 関数内でcdコマンドが実行される。
+5. ２へ戻る。
+
+|||||||||||||||
+
+スタックオーバーフローするまで  
+返ってきません。
+
+|||||||||||||||
+
+元の名前でaliasしてしまった場合は  
+その名前でデフォルト状態のコマンドは呼び出せない。  
+<br>
+
 
 ------------------------------------------------------------
 
@@ -522,20 +780,187 @@ shopt -s cdspell
 |globstar   |**で起点以下のすべてのディレクトリ、ファイルに再帰的にマッチする<br>Rubyライク？|
 |etc...|
 
+------------------------------------------------------------
+
+### GNU readline
+- - -
+CUIプログラムにおいてコマンド履歴機能やTABキーによる補完機能を実現するのに使われるGPLライブラリ。  
+bashの補完時の処理を変更することができる。
+
+<font style="font-size: 1.5em;">
+
+```bash
+~/.inputrc # デフォルトでは、ここのファイルを見に行く
+INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
+```
+
+|||||||||||||||
+
+こういうのがreadlineの機能
+
+<font style="font-size: 0.75em;">
+
+|キー     |readline関数名   |内容        |
+|:-------:|:---------------:|:-----------|
+|C-b / ← |backward-char    |１文字戻る  |
+|C-f / → |forward-char     |１文字進む  |
+|M-f      |forward-word     |１単語進む  |
+|M-b      |backward-char    |１単語戻る  |
+|C-u      |unix-line-discard|カーソル以前の文字列を削除|
+|C-k      |kill-line        |カーソル以降の文字列を削除|
+|C-r / ↑ |reverse-search-history|履歴を後方検索|
+|C-s / ↓ |forward-search-history|履歴を前方検索|
+|C-l      |clear-screen     |ターミナルクリア|
+|C-i / tab|complete         |適した単語を補完|
+|etc..|
+
+|||||||||||||||
+
+
+### bashの補完はコレがダメ
+- - -
+
+- 補完表示にtabを<font style="color: yellow">2回</font>も押す必要がある
+- tab連打で<font style="color: yellow">入力補完してくれない</font>  
+- <font style="color: yellow">色が付いてない</font>から良くわからない  
+- <font style="color: yellow">サフィックスがディレクトリだけ</font>っぽい<br>
+※ディレクトリへのシンボリックリンクも「/」が付く 
+
+|||||||||||||||
+
+### 設定例
+- - -
+
+``` bash:inputrc
+# readline対応ソフト全部に適応されるので「bashのみ」を条件に分岐しておく
+$if bash
+  # TABキーに「一覧表示から補完する関数」を割り当てる
+  TAB: menu-complete
+  # TAB１回目：補完一覧 / ２回目；補完開始
+  set show-all-if-ambiguous on
+  # 補完一覧を色付け
+  set colored-stats on
+  # 補完一覧にサフィックス付与
+  set visible-stats on
+  # シンボリックリンクには「@」を付与
+  set mark-symlinked-directories on
+$endif
+```
+
+
+|||||||||||||||
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/comletion_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:70%;"></img>
+</div>
+※readlineのリロードは「C-x, C-r」
+
+|||||||||||||||
+
+えっ？！  
+fishみたいにカーソル移動で  
+選択できないんですか！？
+
+|||||||||||||||
+
+……そんなこと言っちゃういじわるな人は  
+今すぐpecoを導入すればいいと思いますまる  
+<br>
+<br>
+※pecoはオマケで扱います。
+
+|||||||||||||||
+
+やってもいいかなって思うモノを列挙してみました。  
+じぶんでかくにんしてね？  
+<br>
+ここが詳しい  
+http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
+
+|||||||||||||||
+
+<font style="font-size: 0.75em;">
+
+|readline関数名         |内容            |
+|:---------------------:|:---------------|
+|completion-ignore-case |onならファイル名補完で大文字と小文字を無視する。|
+|completion-map-case    |onなら補完時に"-"と"_"を区別しない。|
+|expand-tilde|ワード補完の際にチルダを$HOMEの内容に展開する。
+|match-hidden-files<br>(default on)|.から始まるファイルも補完候補に加える。|
+|page-completions<br>(default on)  |候補が画面をはみ出すときにmoreライクなページ送りを利用する。|
+|print-completions-horizontally    |画面の下方向ではなく、水平方向にアルファベット順に並べて補完候補を表示する。|
+|show-all-if-unmodified|部分的な補完が出来ない場合でも補完する。<br>これはonにするべき。|
+|skip-completed-text   |被った部分を削除する。※＿はカーソル位置<br>ex) Make＿file -> (tab) -> ×Makefilefile　〇Makefile |
+
+
+|||||||||||||||
+
+<font style="font-size: 0.75em;">
+
+|キー     |readline関数名   |内容        |
+|:-------:|:---------------:|:-----------|
+|C-b / ← |backward-char    |１文字戻る  |
+|C-f / → |forward-char     |１文字進む  |
+|M-f      |forward-word     |１単語進む  |
+|M-b      |backward-char    |１単語戻る  |
+|C-u      |unix-line-discard|カーソル以前の文字列を削除|
+|C-k      |kill-line        |カーソル以降の文字列を削除|
+|C-r / ↑ |reverse-search-history|履歴を後方検索|
+|C-s / ↓ |forward-search-history|履歴を前方検索|
+|C-l      |clear-screen     |ターミナルクリア|
+|M-l      |downcase-word    |直後の単語を小文字へ|
+|M-u      |upcase-word      |直後の単語を大文字に|
+|C-i / tab|complete         |適した単語を補完|
+|C-t      |transpose-chars  |前後の文字を入れ替える|
+
+|||||||||||||||
+
+他にも便利なのいっぱいあるけど、もうあきらめた。  
+調べてください。
+
+|||||||||||||||
+
+
+
+
+
+
+|||||||||||||||
+
+
+
+
+
 
 ------------------------------------------------------------
 
 ### Git Branch名をターミナルに出す
 - - -
-<img src="./img/bash/cdls_play.gif"></img>
+<img src="./img/bash/show_git.gif"></img>
+
+|||||||||||||||
+
+なにこれかっこよす
+
+|||||||||||||||
+
+やってみたい！！！！
+
+|||||||||||||||
+
+やってみました。
 
 |||||||||||||||
 
 ### 目的
 - - -
+
 1. git branchとか打つのメンドウだよね
-2. おしゃれでカッコイイじゃん
+2. やっぱ、相方はおしゃれでイケメンがいいよね
 3. 間違えてcommitしたくない
+4. 女の子にモテそう(´･_･`)ﾃｷﾄｳ
 
 |||||||||||||||
 
@@ -578,23 +1003,6 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 い、今のはいったい何の呪文なんだ……？？
 <img src="./img/bash/prompt_wakaran.jpg" style="width: 40%"></img>
 
-|||||||||||||||
-
-な、何がなんだかよくわからねぇが  
-あんな感じで書けばいいんだな？
-<br>
-<br>
-あんなもの人が書くモノじゃねぇよ
-と思った人は、オマケをご参照ください。
-
-------------------------------------------------------------
-
-<div><!-- divタグがないと以降のimgタグが正常に動かない-->
-<img src="./img/etc/thank_you_for_listening_cool_play.gif"
-     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
-     style="cursor: pointer;"></img>
-</div>
-
 ------------------------------------------------------------
 
 ### 逃げるは恥じゃないし役に立つ
@@ -616,7 +1024,7 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 ってのはメンドウなので、諸君らに頑張ってもらうとして。  
 
 とりあえずは、  
-01とか37mとかいうのをパラメータでもらって  
+01とか37とかいうのをパラメータでもらって  
 中で組み上げて文字列を返せばいいよね？
 
 |||||||||||||||
@@ -625,16 +1033,15 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 - - -
 ``` bash
 ### 制御シーケンスを作ってもらうよ！
-GetStyle ()
-{
-    local font_type=$1
-    local fg=$2
-    local bg=$3
-    case $# in
-        1) echo "\[\e[${font_type}\]";;
-        2) echo "\[\e[${font_type};${fg}\]";;
-        3) echo "\[\e[${font_type};${fg}\e[${bg}\]";;
-    esac
+GetStyle (){
+  local -r font_type=$1
+  local -r fg=$2
+  local -r bg=$3
+  case $# in
+    1) echo "\[\e[${font_type}\]";;
+    2) echo "\[\e[${font_type};${fg}\]";;
+    3) echo "\[\e[${font_type};${fg}\e[${bg}\]";;
+  esac
 }
 ```
 
@@ -643,39 +1050,7 @@ shellではreturnは0～255の1byte範囲の値のみ
 
 |||||||||||||||
 
-``` bash
-source $BASH_ROOT/git-completion.bash
-source $BASH_ROOT/git-prompt.sh
-
-GetStyle ()
-{
-    local font_type=$1
-    local fg=$2
-    local bg=$3
-    case $# in
-        1) echo "\[\e[${font_type}\]";;               # must W-quatation
-        2) echo "\[\e[${font_type};${fg}\]";;         # must W-quatation
-        3) echo "\[\e[${font_type};${fg}\e[${bg}\]";; # must W-quatation
-    esac
-}
-
-GetPromptString ()
-{
-    local DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
-    local GIT_BRANCH='$(__git_ps1)'    # must single-quotation
-    local white=$(GetStyle 00 37m)
-    local B_lime=$(GetStyle 01 32m)
-    local yellow=$(GetStyle 00 33m)
-    local I_red=$(GetStyle 03 31m)
-    echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
-}
-
-PS1=$(GetPromptString)
-```
-
-------------------------------------------------------------
-
-### 補足：クォートの違い？
+### クォートの違い？
 - - -
 
 ``` bash
@@ -685,94 +1060,58 @@ echo 'Single quote: ${HELLO}' # Single quote: ${HELLO}
 ```
 
 - ダブルクォート  
-  <font style="color:yellow">変数・関数を展開して</font>、文字列を認識する。
+  <font style="color:yellow">変数を展開して</font>、文字列を認識する。
   
 - シングルクォート  
   <font style="color:yellow">そのままの内容</font>を、文字列として認識する。
 
+|||||||||||||||
+
+``` bash
+source $BASH_ROOT/git-completion.bash
+source $BASH_ROOT/git-prompt.sh
+
+GetStyle (){
+  local -r font_type=$1
+  local -r fg=$2
+  local -r bg=$3
+  case $# in
+    1) echo "\[\e[${font_type}\]";;               # must W-quatation
+    2) echo "\[\e[${font_type};${fg}m\]";;         # must W-quatation
+    3) echo "\[\e[${font_type};${fg}m\e[${bg}m\]";; # must W-quatation
+  esac
+}
+
+GetPromptString (){
+  local -r DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
+  local -r GIT_BRANCH='$(__git_ps1)'    # must S-quotation
+  local -r white=$(GetStyle 00 37)
+  local -r B_lime=$(GetStyle 01 32)
+  local -r yellow=$(GetStyle 00 33)
+  local -r I_red=$(GetStyle 03 31)
+  echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
+}
+
+PS1=$(GetPromptString)
+```
+
 ------------------------------------------------------------
 
-もっと知りたかったらどうぞ
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/etc/thank_you_for_listening_cool_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
 
 ------------------------------------------------------------
 
 ### おまけ
 
-------------------------------------------------------------
 
-### ラピ〇タの雷
+### peco
 - - -
-<div style="text-align: left;">
-通称、バルス  
-Linux界隈に噂される魔の呪文（コマンド）  
-</div>
-<div style="font-size: 2.0em;">
-``` bash
-rm -rf /
-```
-</div>
-ラピュ〇崩壊の呪文の名の通り、  
-Linuxを崩壊させてくれる。
-
-|||||||||||||||
-
-やってみたい？  
-これを読んでから、VMでやりなさい。  
-http://lambdaops.com/rm-rf-remains/
-
-|||||||||||||||
-
-### 恐ろしい呪文から身を守る
-- - -
-ゴミ箱へ移動させるコマンドをインストールしよう  
-
-```bash
-$ sudo apt-get install trash-cli
-```
-
-|||||||||||||||
-
-### あとはAliasしておく
-- - -
-
-```bash
-if which trash &> /dev/null ; then
-	alias rm='trash-put'
-else
-	alias rm='rm -Iv'
-fi
-```
-------------------------------------------------------------
-
-### shoptをざっと紹介
-- - -
-
-### 
-
 
 ------------------------------------------------------------
 
-### Reeadlineをざっと紹介
-- - -
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-b / ← |backward-char    |１文字戻る  |
-|C-f / → |forward-char     |１文字進む  |
-|M-f      |forward-word     |１単語進む  |
-|M-b      |backward-char    |１単語戻る  |
-|C-u      |unix-line-discard|カーソル以前の文字列を削除|
-|C-k      |kill-line        |カーソル以降の文字列を削除|
-|C-r / ↑ |reverse-search-history|履歴を後方検索|
-|C-s / ↓ |forward-search-history|履歴を前方検索|
-
-|||||||||||||||
-
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-l      |clear-screen     |ターミナルクリア|  
-|M-l      |downcase-word    |直後の単語を小文字へ|
-|M-u      |upcase-word      |直後の単語を大文字に|
-|C-i / tab|complete         |適した単語を補完|
-|C-t      |transpose-chars  |前後の文字を入れ替える|
-
+------------------------------------------------------------
 
