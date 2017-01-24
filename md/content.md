@@ -303,6 +303,7 @@ http://gggritso.com/human-git-aliases
 - 「emacs」->「e」  
 macsの4文字を打つのが面倒だから短縮するという。  
 勝手にしてくれ。  
+<br>
 - 「git status」->「gst」  
 gstで何が起こるのか？  
 作った本人にしか分からなそうぽよ……
@@ -314,9 +315,13 @@ gstで何が起こるのか？
 
 |||||||||||||||
 
+<font style="font-size: 1.25em">
+
 唐突ですが
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 コマンドオプションって  
 覚えるの辛くないですか？
@@ -382,14 +387,20 @@ $ less -gMNRqw make.log
 
 |||||||||||||||
 
-明日には忘れている自信がある。
+<font style="color: yellow; font-size: 1.5em">
+
+**明日には忘れている自信がある。**
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 やる気を失くす前に  
 心が折れそうだ……  
 
 |||||||||||||||
+
+<font style="font-size: 1.25em">
 
 そうだ！  
 システムに覚えさせよう！
