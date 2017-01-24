@@ -600,6 +600,86 @@ aliasされたlsコマンドが適用される。
 
 ------------------------------------------------------------
 
+### builtin command
+- - -
+
+|||||||||||||||
+
+さっきの改造cdコマンドで使った
+\cdってなんぞ？
+
+|||||||||||||||
+
+``` bash
+custom_cdls()
+{
+  if [[ $# == 0 ]]; then
+    return 1
+  elif [[ 1 < $# ]]; then
+    echo "Too many args for cd command"
+    return 1
+  fi
+  if [[ ! -e $1 ]]; then
+    echo "Not exist: $1"
+    return 1
+  fi
+  # \cd => builtin cd
+  clear && \cd $@ && ls
+}
+alias cd='custom_cdls'
+```
+
+|||||||||||||||
+
+よくわからないので、  
+これを通常のcdに書き換えてみます。
+
+|||||||||||||||
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/builtin_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;">
+</div>
+
+|||||||||||||||
+
+コ、コントロールが返ってこない……！
+
+|||||||||||||||
+
+### 無限再帰
+- - -
+
+``` bash
+custom_cdls()
+{
+  （略）
+  clear && cd $@ && ls
+}
+alias cd='custom_cdls'
+```
+
+1. このコマンドをcdで実行する
+2. alias cdがコールされる
+3. custom_cdls関数がコールされる。
+4. 関数内でcdコマンドが実行される。
+5. ２へ戻る。
+
+|||||||||||||||
+
+スタックオーバーフローするまで  
+返ってきません。
+
+|||||||||||||||
+
+元の名前でaliasしてしまった場合は  
+その名前でデフォルト状態のコマンドは呼び出せない。  
+<br>
+
+
+------------------------------------------------------------
+
 もうエイリアスは  
 それぞれで探してもらうとして
 
