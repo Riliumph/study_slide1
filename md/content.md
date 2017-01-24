@@ -36,7 +36,6 @@
 - - -
 一番多くのDistributionで使われている（？）  
 いわゆる、de facto standardなshell。  
-最近、頑張っているらしいです。  
 
 |||||||||||||||
 
@@ -46,7 +45,7 @@
 
 |||||||||||||||
 
-あとで、やるので詳細は省きます。  
+あとで、やるので以下略。  
 
 ------------------------------------------------------------
 
@@ -425,7 +424,7 @@ else
   alias ls='ls -FvXx --group-directories-first'
 fi
 alias la='ls -AB'
-alias ll='clear && la -lh --color=auto --time-style="+%y-%m-%d %H:%M:%S"'
+alias ll='clear && la -lh --time-style="+%y-%m-%d %H:%M:%S"'
 
 #bashrcのリロード処理。分かり易い名前で！
 alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
