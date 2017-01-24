@@ -526,6 +526,13 @@ fi
 
 ### 関数で処理を自動化する
 - - -
+|||||||||||||||
+
+cd と ls のコマンドはいつでも使います。
+
+|||||||||||||||
+
+でも、cdしてlsするのは苦行な気がします。
 
 |||||||||||||||
 
@@ -541,7 +548,7 @@ fi
 - - -
 
 ``` bash
-no_arg_no_act_cd_ls()
+custom_cdls()
 {
   if [[ $# == 0 ]]; then
     return 1
@@ -556,7 +563,7 @@ no_arg_no_act_cd_ls()
   # \cd => builtin cd
   clear && \cd $@ && ls
 }
-alias cd='no_arg_no_act_cd_ls'
+alias cd='custom_cdls'
 ```
 
 |||||||||||||||
