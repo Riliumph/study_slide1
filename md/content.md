@@ -182,16 +182,13 @@ fishはコマンドを覚えます。
 ### デバッガの標準装備
 - - -
 
-
 <div><!-- divタグがないと以降のimgタグが正常に動かない-->
-<img src="./img/fish/debug.gif"
+<img src="./img/fish/debug_play.gif"
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
      style="cursor: pointer;">
 </div>
 
-
 |||||||||||||||
-
 
 <font style="font-size: 1.5em">
 **欠点？**
@@ -204,7 +201,7 @@ fishはコマンドを覚えます。
 |||||||||||||||
 
 ……すいません。  
-あります。  
+あ、ありますよぅ。  
 
 |||||||||||||||
 
@@ -214,7 +211,7 @@ fishはコマンドを覚えます。
 <font style="color:yellow">**bashに互換性なし**</font>  
 ↓  
 bash script使う度に  
-fish上でbashを起動するのは大変ぽよー  
+fish上でbashを起動するのは大変  
 ↓  
 bash依存症の会社では無理ぽよ？  
 
