@@ -230,6 +230,27 @@ bash依存症の会社では無理ぽよ？
 <br>
 <img src="./img/fish/001.png" style="width:40%"/>
 
+|||||||||||||||
+
+### 情報が少ない
+- - -
+だから英語ドキュメント読まないとダメだよ  
+
+|||||||||||||||
+
+とか書こうと思ってたら  
+
+|||||||||||||||
+
+スーパーEmacserるびきち先生が  
+全訳してくれてました。  
+<a rlink="http://fish.rubikitch.com/sitemap/">全訳！fishシェル普及計画</a>
+
+|||||||||||||||
+
+どうして、スーパーな人たちは手が早いのか。  
+手が早いからスーパーなのかもしれない。
+
 ------------------------------------------------------------
 
 #本題
@@ -279,8 +300,7 @@ Google Shell Style Guide
 “人に勧める”なら、それが何をするか分かるコマンド名にしよう。  
 <br>
 gitならこの人がオススメ  
-Human Git Aliases  
-http://gggritso.com/human-git-aliases
+<a rlink="http://gggritso.com/human-git-aliases">Human Git Aliases</a>
 
 |||||||||||||||
 
