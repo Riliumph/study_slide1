@@ -599,7 +599,7 @@ custom_cdls()
   if [[ $# == 0 ]]; then
     return 1
   elif [[ 1 < $# ]]; then
-    echo "Too many args for cd command"
+    echo 'Too many args for cd command'
     return 1
   fi
   if [[ ! -e $1 ]]; then
@@ -669,7 +669,7 @@ custom_cdls()
   if [[ $# == 0 ]]; then
     return 1
   elif [[ 1 < $# ]]; then
-    echo "Too many args for cd command"
+    echo 'Too many args for cd command'
     return 1
   fi
   if [[ ! -e $1 ]]; then
@@ -1053,7 +1053,7 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 - - -
 ``` bash
 ### 制御シーケンスを作ってもらうよ！
-GetStyle (){
+get_sequence_style (){
   local -r font_type=$1
   local -r fg=$2
   local -r bg=$3
@@ -1091,7 +1091,7 @@ echo 'Single quote: ${HELLO}' # Single quote: ${HELLO}
 source $BASH_ROOT/git-completion.bash
 source $BASH_ROOT/git-prompt.sh
 
-GetStyle (){
+get_sequence_style (){
   local -r font_type=$1
   local -r fg=$2
   local -r bg=$3
@@ -1102,17 +1102,17 @@ GetStyle (){
   esac
 }
 
-GetPromptString (){
+get_prompt_string (){
   local -r DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
   local -r GIT_BRANCH='$(__git_ps1)'    # must S-quotation
-  local -r white=$(GetStyle 00 37)
-  local -r B_lime=$(GetStyle 01 32)
-  local -r yellow=$(GetStyle 00 33)
-  local -r I_red=$(GetStyle 03 31)
+  local -r white=$(get_sequence_style 00 37)
+  local -r B_lime=$(get_sequence_style 01 32)
+  local -r yellow=$(get_sequence_style 00 33)
+  local -r I_red=$(get_sequence_style 03 31)
   echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
 }
 
-PS1=$(GetPromptString)
+PS1=$(get_prompt_string)
 ```
 
 ------------------------------------------------------------
