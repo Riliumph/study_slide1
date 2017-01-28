@@ -838,6 +838,43 @@ INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
 
 |||||||||||||||
 
+### できた
+- - -
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/jump_word.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
+     style="cursor: pointer;"></img>
+</div>
+
+
+```
+"\e[1;5C": forward-word   # Control+Right
+"\e[1;5D": backward-word  # Control+Left
+```
+
+|||||||||||||||
+
+\e[1;5C  
+……？？
+
+|||||||||||||||
+
+### catで出せる
+- - -
+catの入力で色々出せます。  
+確かめてみてね！！
+<br>
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/sequence.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
+     style="cursor: pointer;"></img>
+</div>
+
+```
+# これは結構便利だと思います。
+"\C-^": "~/"
+```
 
 ### bashの補完はコレがダメ
 - - -
