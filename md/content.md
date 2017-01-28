@@ -938,7 +938,78 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 
 ### peco
 - - - 
+<div style="text-align: left;">
+機能はいたってシンプル  
+行データを標準入力で取得し、選択したデータを標準出力する。  
+標準入力 -> (行データ) peco -> QUERY検索 -> 標準出力へ
+</div>
+<br>
+- fishほどshellと同化していない
+- パイプに対応  
+  →あらゆるコマンド（gitとか）との受け渡しができる  
+  そのためfish環境にも導入してしまうぐらい便利
 
+|||||||||||||||
+
+### 公式DEMO
+- - -
+
+<img src="./img/peco/demo.gif"></img>
+
+|||||||||||||||
+
+### 複数選択もできちゃう
+- - -
+
+<img src="./img/peco/multi_selection.gif"></img>
+
+|||||||||||||||
+
+### cdしてみた
+- - -
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/peco/cdls_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:60%;"></img>
+</div>
+
+|||||||||||||||
+
+スクリプト内容
+- - -
+
+```
+#!/bin/bash -eu
+
+peco_cdls()
+{
+  local dir="$( find . -maxdepth 1 -type d | sed -e 's;\./;;' | peco )"
+  if [[ ! -z "$dir" ]] ; then
+    cd "$dir"
+  fi
+}
+```
+
+|||||||||||||||
+
+### 入力履歴をpecoる
+- - -
+コマンド入力ではなく`C-p`にキーバインドしています。  
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/peco/history_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:50%;"></img>
+</div>
+
+|||||||||||||||
+
+git logをsedしてやれば、  
+gitのコミットログを選択しながら遡ったりもできる
+
+|||||||||||||||
+
+夢がひろがりんぐですね！！
 
 ------------------------------------------------------------
 
