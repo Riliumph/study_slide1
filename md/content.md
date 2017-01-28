@@ -92,12 +92,13 @@ zには、アルファベット最後
 |||||||||||||||
 
 他にも
-- bashとして振舞える(お前はいったい何なんだ  
+- bashとして振舞える 
 - コマンド履歴を複数ターミナルに共有できる  
-- ほとんどの処理にユーザーがhookできる  
+- グローバルエイリアスなる超絶便利な短縮コマンドがある
 
 |||||||||||||||
 
+ほとんどの処理にユーザーがhookできるなんて  
 <font style="font-size: 1.5em">
 **何か裏があるんでしょ？**
 </font>
@@ -116,8 +117,8 @@ zには、アルファベット最後
 |||||||||||||||
 
 <font style="color:yellow; font-size: 1.5em">
-**「仕事を楽にするためにzshを始めたのに**  
-**時間を奪われてちっとも楽にならない」**  
+**「楽するためにzshを始めたのに**  
+**時間を取られてちっとも楽にならない」**  
 </font>
 と言われる。
 
@@ -139,7 +140,9 @@ zには、アルファベット最後
 
 コンピュータは人に使われるためにあるのだ  
 という理屈を地で行く  
-<br>
+
+|||||||||||||||
+
 まさに
 
 |||||||||||||||
@@ -225,10 +228,31 @@ bash依存症の会社では無理ぽよ？
 |||||||||||||||
 
 スーパーエンジニア達のつぶやき
-<br>
+- - -
 <img src="./img/fish/002.png" style="width:40%"/>
 <br>
 <img src="./img/fish/001.png" style="width:40%"/>
+
+|||||||||||||||
+
+### 情報が少ない
+- - -
+だから英語ドキュメント読まないとダメだよ  
+
+|||||||||||||||
+
+とか書こうと思ってたら  
+
+|||||||||||||||
+
+スーパーEmacserるびきち先生が  
+全訳してくれてました。  
+<a rlink="http://fish.rubikitch.com/sitemap/">全訳！fishシェル普及計画</a>
+
+|||||||||||||||
+
+どうして、スーパーな人たちは手が早いのか。  
+手が早いからスーパーなのかもしれない。
 
 ------------------------------------------------------------
 
@@ -279,8 +303,7 @@ Google Shell Style Guide
 “人に勧める”なら、それが何をするか分かるコマンド名にしよう。  
 <br>
 gitならこの人がオススメ  
-Human Git Aliases  
-http://gggritso.com/human-git-aliases
+<a rlink="http://gggritso.com/human-git-aliases">Human Git Aliases</a>
 
 |||||||||||||||
 
@@ -579,7 +602,7 @@ custom_cdls()
   if [[ $# == 0 ]]; then
     return 1
   elif [[ 1 < $# ]]; then
-    echo "Too many args for cd command"
+    echo 'Too many args for cd command'
     return 1
   fi
   if [[ ! -e $1 ]]; then
@@ -649,7 +672,7 @@ custom_cdls()
   if [[ $# == 0 ]]; then
     return 1
   elif [[ 1 < $# ]]; then
-    echo "Too many args for cd command"
+    echo 'Too many args for cd command'
     return 1
   fi
   if [[ ! -e $1 ]]; then
@@ -782,7 +805,7 @@ shopt -s cdspell
 
 ------------------------------------------------------------
 
-### GNU readline
+### 闇の力（？）GNU readline
 - - -
 CUIプログラムにおいてコマンド履歴機能やTABキーによる補完機能を実現するのに使われるGPLライブラリ。  
 bashの補完時の処理を変更することができる。
@@ -794,9 +817,20 @@ bashの補完時の処理を変更することができる。
 INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
 ```
 
+------------------------------------------------------------
+
+### ターミナルの挙動を変更する
+- - -
+
+emacsには
+```C-→
+```
+で１単語ジャンプすることができる。  
+これをターミナルで実装してみる。
+
 |||||||||||||||
 
-こういうのがreadlineの機能
+こういうreadlineの機能を使ってみる
 
 <font style="font-size: 0.75em;">
 
@@ -816,6 +850,75 @@ INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
 
 |||||||||||||||
 
+### できた
+- - -
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/jump_word.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
+     style="cursor: pointer;"></img>
+</div>
+
+
+```
+"\e[1;5C": forward-word   # Control+Right
+"\e[1;5D": backward-word  # Control+Left
+```
+
+|||||||||||||||
+
+\e[1;5C  
+……？？
+
+|||||||||||||||
+
+### catで出せる
+- - -
+catの入力で色々出せます。  
+確かめてみてね！！
+<br>
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/sequence.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
+     style="cursor: pointer;"></img>
+</div>
+
+```
+# これは結構便利だと思います。
+"\C-^": "~/"
+```
+
+|||||||||||||||
+
+### 絶対にやってはいけないキーバインド
+- - -
+
+Ctrl+mはReturnのキー情報です。  
+これを上書きすると闇の力が垣間見れます。  
+
+<font style="font-size: 2.0em;">
+
+```
+# C-m = RETURN
+"\C-m": " | less"
+```
+
+|||||||||||||||
+
+### やってみた
+- - -
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/warning_key_bind_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
+
+|||||||||||||||
+
+<font style="font-size: 2.0em;">
+＼(^o^)／ｵﾜﾀ  
+
+------------------------------------------------------------
 
 ### bashの補完はコレがダメ
 - - -
@@ -866,10 +969,8 @@ fishみたいにカーソル移動で
 |||||||||||||||
 
 ……そんなこと言っちゃういじわるな人は  
-今すぐpecoを導入すればいいと思いますまる  
-<br>
-<br>
-※pecoはオマケで扱います。
+今すぐpecoを導入すれば  
+いいと思いますまる(´･_･`)  
 
 |||||||||||||||
 
@@ -894,45 +995,102 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 |show-all-if-unmodified|部分的な補完が出来ない場合でも補完する。<br>これはonにするべき。|
 |skip-completed-text   |被った部分を削除する。※＿はカーソル位置<br>ex) Make＿file -> (tab) -> ×Makefilefile　〇Makefile |
 
+------------------------------------------------------------
+
+### 補完候補を選択したい
+- - -
 
 |||||||||||||||
 
-<font style="font-size: 0.75em;">
+あのfishの候補選択は便利そうですよね  
+あとカッコイイですよね
 
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-b / ← |backward-char    |１文字戻る  |
-|C-f / → |forward-char     |１文字進む  |
-|M-f      |forward-word     |１単語進む  |
-|M-b      |backward-char    |１単語戻る  |
-|C-u      |unix-line-discard|カーソル以前の文字列を削除|
-|C-k      |kill-line        |カーソル以降の文字列を削除|
-|C-r / ↑ |reverse-search-history|履歴を後方検索|
-|C-s / ↓ |forward-search-history|履歴を前方検索|
-|C-l      |clear-screen     |ターミナルクリア|
-|M-l      |downcase-word    |直後の単語を小文字へ|
-|M-u      |upcase-word      |直後の単語を大文字に|
-|C-i / tab|complete         |適した単語を補完|
-|C-t      |transpose-chars  |前後の文字を入れ替える|
+<img src="./img/fish/comletion.gif" style="width:60%"></img>
 
 |||||||||||||||
 
-他にも便利なのいっぱいあるけど、もうあきらめた。  
-調べてください。
+あんなのbashにあったらなぁ……(´･_･`)
 
 |||||||||||||||
 
-
-
-
-
+あった(´･_･`)
 
 |||||||||||||||
 
+### peco
+- - - 
+<div style="text-align: left;">
+機能はいたってシンプル  
+行データを標準入力で取得し、選択したデータを標準出力する。  
+標準入力 -> (行データ) peco -> QUERY検索 -> 標準出力へ
+</div>
+<br>
+- fishほどshellと同化していない
+- パイプに対応  
+  →あらゆるコマンド（gitとか）との受け渡しができる  
+  そのためfish環境にも導入してしまうぐらい便利
 
+|||||||||||||||
 
+### 公式DEMO
+- - -
 
+<img src="./img/peco/demo.gif"></img>
 
+|||||||||||||||
+
+### 複数選択もできちゃう
+- - -
+
+<img src="./img/peco/multi_selection.gif"></img>
+
+|||||||||||||||
+
+### cdしてみた
+- - -
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/peco/cdls_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:60%;"></img>
+</div>
+
+|||||||||||||||
+
+スクリプト内容
+- - -
+
+```
+#!/bin/bash -eu
+
+peco_cdls()
+{
+  local dir="$( find . -maxdepth 1 -type d | sed -e 's;\./;;' | peco )"
+  if [[ ! -z "$dir" ]] ; then
+    cd "$dir"
+  fi
+}
+```
+
+|||||||||||||||
+
+### 入力履歴をpecoる
+- - -
+コマンド入力ではなく`C-p`にキーバインドしています。  
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/peco/history_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:50%;"></img>
+</div>
+
+|||||||||||||||
+
+git logをsedしてやれば、  
+gitのコミットログを選択しながら遡ったりもできる
+
+|||||||||||||||
+
+夢がひろがりんぐですね！！
 
 ------------------------------------------------------------
 
@@ -958,9 +1116,9 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 - - -
 
 1. git branchとか打つのメンドウだよね
-2. やっぱ、相方はおしゃれでイケメンがいいよね
+2. 相方はやっぱりイケメンがいいよね
 3. 間違えてcommitしたくない
-4. 女の子にモテそう(´･_･`)ﾃｷﾄｳ
+4. できたら女の子にモテそう(´･_･`)ﾃｷﾄ-
 
 |||||||||||||||
 
@@ -1033,7 +1191,7 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 - - -
 ``` bash
 ### 制御シーケンスを作ってもらうよ！
-GetStyle (){
+get_sequence_style (){
   local -r font_type=$1
   local -r fg=$2
   local -r bg=$3
@@ -1071,7 +1229,7 @@ echo 'Single quote: ${HELLO}' # Single quote: ${HELLO}
 source $BASH_ROOT/git-completion.bash
 source $BASH_ROOT/git-prompt.sh
 
-GetStyle (){
+get_sequence_style (){
   local -r font_type=$1
   local -r fg=$2
   local -r bg=$3
@@ -1082,17 +1240,17 @@ GetStyle (){
   esac
 }
 
-GetPromptString (){
+get_prompt_string (){
   local -r DEBIAN_INFO=${debian_chroot:+($debian_chroot)}
   local -r GIT_BRANCH='$(__git_ps1)'    # must S-quotation
-  local -r white=$(GetStyle 00 37)
-  local -r B_lime=$(GetStyle 01 32)
-  local -r yellow=$(GetStyle 00 33)
-  local -r I_red=$(GetStyle 03 31)
+  local -r white=$(get_sequence_style 00 37)
+  local -r B_lime=$(get_sequence_style 01 32)
+  local -r yellow=$(get_sequence_style 00 33)
+  local -r I_red=$(get_sequence_style 03 31)
   echo "${DEBIAN_INFO}${B_lime}\u${white}@\h:${yellow}\w${white}|${I_red}${GIT_BRANCH}\n${white}\$ "
 }
 
-PS1=$(GetPromptString)
+PS1=$(get_prompt_string)
 ```
 
 ------------------------------------------------------------
@@ -1102,16 +1260,4 @@ PS1=$(GetPromptString)
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
      style="cursor: pointer;"></img>
 </div>
-
-------------------------------------------------------------
-
-### おまけ
-
-
-### peco
-- - -
-
-------------------------------------------------------------
-
-------------------------------------------------------------
 
