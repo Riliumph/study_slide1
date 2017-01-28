@@ -888,10 +888,8 @@ fishみたいにカーソル移動で
 |||||||||||||||
 
 ……そんなこと言っちゃういじわるな人は  
-今すぐpecoを導入すればいいと思いますまる  
-<br>
-<br>
-※pecoはオマケで扱います。
+今すぐpecoを導入すれば  
+いいと思いますまる(´･_･`)  
 
 |||||||||||||||
 
@@ -916,36 +914,25 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 |show-all-if-unmodified|部分的な補完が出来ない場合でも補完する。<br>これはonにするべき。|
 |skip-completed-text   |被った部分を削除する。※＿はカーソル位置<br>ex) Make＿file -> (tab) -> ×Makefilefile　〇Makefile |
 
-
-|||||||||||||||
-
-<font style="font-size: 0.75em;">
-
-|キー     |readline関数名   |内容        |
-|:-------:|:---------------:|:-----------|
-|C-b / ← |backward-char    |１文字戻る  |
-|C-f / → |forward-char     |１文字進む  |
-|M-f      |forward-word     |１単語進む  |
-|M-b      |backward-char    |１単語戻る  |
-|C-u      |unix-line-discard|カーソル以前の文字列を削除|
-|C-k      |kill-line        |カーソル以降の文字列を削除|
-|C-r / ↑ |reverse-search-history|履歴を後方検索|
-|C-s / ↓ |forward-search-history|履歴を前方検索|
-|C-l      |clear-screen     |ターミナルクリア|
-|M-l      |downcase-word    |直後の単語を小文字へ|
-|M-u      |upcase-word      |直後の単語を大文字に|
-|C-i / tab|complete         |適した単語を補完|
-|C-t      |transpose-chars  |前後の文字を入れ替える|
-
-|||||||||||||||
-
-他にも便利なのいっぱいあるけど、もうあきらめた。  
-調べてください。
-
 ------------------------------------------------------------
 
 ### 補完候補を選択したい
 - - -
+
+|||||||||||||||
+
+あのfishの候補選択は便利そうですよね  
+あとカッコイイですよね
+
+<img src="./img/fish/comletion.gif" style="width:60%"></img>
+
+|||||||||||||||
+
+あんなのbashにあったらなぁ……(´･_･`)
+
+|||||||||||||||
+
+あった(´･_･`)
 
 |||||||||||||||
 
@@ -1121,16 +1108,4 @@ PS1=$(get_prompt_string)
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
      style="cursor: pointer;"></img>
 </div>
-
-------------------------------------------------------------
-
-### おまけ
-
-
-### peco
-- - -
-
-------------------------------------------------------------
-
-------------------------------------------------------------
 
