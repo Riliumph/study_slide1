@@ -876,6 +876,38 @@ catの入力で色々出せます。
 "\C-^": "~/"
 ```
 
+|||||||||||||||
+
+### 絶対にやってはいけないキーバインド
+- - -
+
+Ctrl+mはReturnのキー情報です。  
+これを上書きすると闇の力が垣間見れます。  
+
+<font style="font-size: 2.0em;">
+
+```
+# C-m = RETURN
+"\C-m": " | less"
+```
+
+|||||||||||||||
+
+### やってみた
+- - -
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/warning_key_bind_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer;"></img>
+</div>
+
+|||||||||||||||
+
+<font style="font-size: 2.0em;">
+＼(^o^)／ｵﾜﾀ  
+
+------------------------------------------------------------
+
 ### bashの補完はコレがダメ
 - - -
 
