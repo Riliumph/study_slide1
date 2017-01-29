@@ -867,6 +867,8 @@ bashにはbashのキーバインド設定もできるので、
 ### できた
 - - -
 
+<font style="font-size: 1.5em">
+
 ```
 "\e[1;5C": forward-word   # Control+Right
 "\e[1;5D": backward-word  # Control+Left
@@ -883,9 +885,9 @@ bashにはbashのキーバインド設定もできるので、
 
 |||||||||||||||
 
-<font style="font-size: 1.5em;">
-
+<span lang="en" style="font-family: Arial; font-size: 1.5em">
 \e[1;5C  
+</span>
 
 |||||||||||||||
 
@@ -935,6 +937,11 @@ Ctrl+mはReturnのキー情報です。
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
      style="cursor: pointer;"></img>
 </div>
+
+|||||||||||||||
+
+Returnキーを押しても  
+コマンドが実行できない！！
 
 |||||||||||||||
 
