@@ -1,5 +1,5 @@
-## シェル環境  
-## どうしてますか？
+## シェル環境について  
+## ちょっと調べてみた
 
 ------------------------------------------------------------
 
@@ -8,6 +8,7 @@
 
 - 色んなシェルの紹介
 - bashを改造する話
+- 最後に
 
 ------------------------------------------------------------
 
@@ -215,7 +216,7 @@ fishはコマンドを覚えます。
 
 |||||||||||||||
 
-### fishの欠点- bash非互換 -
+### fishの欠点 - bash非互換 -
 - - -
 日本企業が愛する（？）<br>
 <font style="color:yellow">**bashに互換性なし**</font>  
@@ -224,7 +225,9 @@ bash script使う度に
 fish上でbashを起動するのは大変  
 ↓  
 bash依存症の会社では無理ぽよ？  
-
+  
+  
+……fish<font style="color:yellow">“の”</font>欠点なのかコレ？？
 |||||||||||||||
 
 スーパーエンジニア達のつぶやき
@@ -247,7 +250,7 @@ bash依存症の会社では無理ぽよ？
 
 スーパーEmacserるびきち先生が  
 全訳してくれてました。  
-<a rlink="http://fish.rubikitch.com/sitemap/">全訳！fishシェル普及計画</a>
+<a href="http://fish.rubikitch.com/sitemap/">全訳！fishシェル普及計画</a>
 
 |||||||||||||||
 
@@ -303,7 +306,7 @@ Google Shell Style Guide
 “人に勧める”なら、それが何をするか分かるコマンド名にしよう。  
 <br>
 gitならこの人がオススメ  
-<a rlink="http://gggritso.com/human-git-aliases">Human Git Aliases</a>
+<a href="http://gggritso.com/human-git-aliases">Human Git Aliases</a>
 
 |||||||||||||||
 
@@ -479,6 +482,8 @@ alias refresh='source $HOME/.bashrc && echo "Refresh Bash"'
 
 |||||||||||||||
 
+<font style="font-size: 1.25em">
+
 みなさんは、ラ〇ュタの雷ってご存知ですか？
 
 |||||||||||||||
@@ -502,8 +507,10 @@ Linuxのrmコマンドは、
 
 |||||||||||||||
 
-**対象は全員死すべし**  
-**慈悲はない**  
+<font style="color: yellow; font-size: 1.5em">
+
+対象は全員死すべし  
+慈悲はない  
 
 |||||||||||||||
 
@@ -517,11 +524,11 @@ Linuxを崩壊させてくれやがります。
 
 |||||||||||||||
 
-なんで、自爆するのか？
+(´･_･`)なーんで、自爆するの？
 
 |||||||||||||||
 
-あっ
+(´･_･`)あっ
 
 <img src="./img/keybord.jpg" style="width:75%"/>
 
@@ -575,13 +582,14 @@ fi
 
 ### 関数で処理を自動化する
 - - -
+
 |||||||||||||||
 
 cd と ls のコマンドはいつでも使います。
 
 |||||||||||||||
 
-でも、cdしてlsするのは苦行な気がします。
+でも、cdしてlsするのは<font style="color: yellow">苦行です</font>（断言）
 
 |||||||||||||||
 
@@ -725,19 +733,20 @@ alias cd='custom_cdls'
 |||||||||||||||
 
 スタックオーバーフローするまで  
-返ってきません。
+返ってきません？  
+（未確認ですすいませんごめんなさい）
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
+
 元の名前でaliasしてしまった場合は  
 その名前でデフォルト状態のコマンドは呼び出せない。  
-<br>
-
 
 ------------------------------------------------------------
 
 もうエイリアスは  
-それぞれで探してもらうとして
+各自で探してください。
 
 ------------------------------------------------------------
 
@@ -746,7 +755,7 @@ alias cd='custom_cdls'
 bashに隠された機能を開放したいと思います。  
 zshに若干近くなります。  
 
-------------------------------------------------------------
+|||||||||||||||
 
 ### 解放する方法 - shoptとは？ -
 - - -
@@ -777,6 +786,7 @@ shopt -s audocd
 
 ### 意図を組む移動
 - - -
+
 ```bash
 shopt -s cdspell
 ```
@@ -805,7 +815,7 @@ shopt -s cdspell
 
 ------------------------------------------------------------
 
-### 闇の力（？）GNU readline
+### GNU readline
 - - -
 CUIプログラムにおいてコマンド履歴機能やTABキーによる補完機能を実現するのに使われるGPLライブラリ。  
 bashの補完時の処理を変更することができる。
@@ -819,14 +829,17 @@ INPUTRC=xxxx # 環境変数INPUTRCがあれば、それを見に行く
 
 ------------------------------------------------------------
 
-### ターミナルの挙動を変更する
+### 闇の力（？）その１ - ターミナルのキーバインド - 
 - - -
 
 emacsには
 ```C-→
 ```
 で１単語ジャンプすることができる。  
-これをターミナルで実装してみる。
+これをターミナルで実装してみる。  
+<br>
+bashにはbashのキーバインド設定もできるので、  
+そっちと競合しないでね
 
 |||||||||||||||
 
@@ -853,13 +866,6 @@ emacsには
 ### できた
 - - -
 
-<div><!-- divタグがないと以降のimgタグが正常に動かない-->
-<img src="./img/readline/jump_word.gif"
-     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
-     style="cursor: pointer;"></img>
-</div>
-
-
 ```
 "\e[1;5C": forward-word   # Control+Right
 "\e[1;5D": backward-word  # Control+Left
@@ -867,8 +873,23 @@ emacsには
 
 |||||||||||||||
 
+
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/readline/jump_word.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
+     style="cursor: pointer;"></img>
+</div>
+
+|||||||||||||||
+
+<font style="font-size: 1.5em;">
+
 \e[1;5C  
-……？？
+
+|||||||||||||||
+
+<font style="font-size: 1.25em;">
+……い、いったい何の呪文なんだ！？
 
 |||||||||||||||
 
@@ -907,6 +928,7 @@ Ctrl+mはReturnのキー情報です。
 
 ### やってみた
 - - -
+
 <div><!-- divタグがないと以降のimgタグが正常に動かない-->
 <img src="./img/readline/warning_key_bind_play.gif"
      onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
@@ -919,6 +941,11 @@ Ctrl+mはReturnのキー情報です。
 ＼(^o^)／ｵﾜﾀ  
 
 ------------------------------------------------------------
+
+### 闇の力（？）その２ - ターミナルの挙動変更 -
+- - -
+
+|||||||||||||||
 
 ### bashの補完はコレがダメ
 - - -
@@ -934,8 +961,10 @@ Ctrl+mはReturnのキー情報です。
 ### 設定例
 - - -
 
+<font style="font-size: 1.5em;">
+
 ``` bash:inputrc
-# readline対応ソフト全部に適応されるので「bashのみ」を条件に分岐しておく
+# readline対応ソフト全部に適応されるので「bashのみ」に条件分岐する
 $if bash
   # TABキーに「一覧表示から補完する関数」を割り当てる
   TAB: menu-complete
@@ -950,7 +979,6 @@ $if bash
 $endif
 ```
 
-
 |||||||||||||||
 
 <div><!-- divタグがないと以降のimgタグが正常に動かない-->
@@ -963,7 +991,7 @@ $endif
 |||||||||||||||
 
 えっ？！  
-fishみたいにカーソル移動で  
+fishみたいに<font style="color:yellow;">カーソル移動</font>で  
 選択できないんですか！？
 
 |||||||||||||||
@@ -1009,10 +1037,12 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 
 |||||||||||||||
 
-あんなのbashにあったらなぁ……(´･_･`)
+<font style="font-size: 1.5em;">
+(´-`).｡oO(bashにも欲しい…)
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
 あった(´･_･`)
 
 |||||||||||||||
@@ -1021,13 +1051,14 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 - - - 
 <div style="text-align: left;">
 機能はいたってシンプル  
-行データを標準入力で取得し、選択したデータを標準出力する。  
-標準入力 -> (行データ) peco -> QUERY検索 -> 標準出力へ
+<font style="color: yellow;">
+**行データを標準入力で取得し、選択したデータを標準出力する。**  
+</font>
+標準入力 -> (行データ) peco -> QUERY検索 -> 標準出力へ  
 </div>
-<br>
 - fishほどshellと同化していない
 - パイプに対応  
-  →あらゆるコマンド（gitとか）との受け渡しができる  
+  →あらゆるコマンド（gitとか）と自由に受け渡しができる  
   そのためfish環境にも導入してしまうぐらい便利
 
 |||||||||||||||
@@ -1058,6 +1089,8 @@ http://www.geocities.jp/harddiskdive/gdb/gdb_354.html
 
 スクリプト内容
 - - -
+
+<font style="font-size: 1.5em;">
 
 ```
 #!/bin/bash -eu
@@ -1090,24 +1123,32 @@ gitのコミットログを選択しながら遡ったりもできる
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
 夢がひろがりんぐですね！！
 
 ------------------------------------------------------------
 
 ### Git Branch名をターミナルに出す
 - - -
-<img src="./img/bash/show_git.gif"></img>
+<div><!-- divタグがないと以降のimgタグが正常に動かない-->
+<img src="./img/bash/show_git_play.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+     style="cursor: pointer; width:50%;"></img>
+</div>
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
 なにこれかっこよす
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
 やってみたい！！！！
 
 |||||||||||||||
 
+<font style="font-size: 1.5em;">
 やってみました。
 
 |||||||||||||||
@@ -1115,10 +1156,11 @@ gitのコミットログを選択しながら遡ったりもできる
 ### 目的
 - - -
 
-1. git branchとか打つのメンドウだよね
-2. 相方はやっぱりイケメンがいいよね
-3. 間違えてcommitしたくない
-4. できたら女の子にモテそう(´･_･`)ﾃｷﾄ-
+1. git branchとか打つの<font style="color: yellow;">**メンドウ**</font>だよね
+2. 間違えてpushしたくない  
+  （pushをcommitっていう人はcommitをなにて言うの？？
+3. 相方はやっぱり<font style="color: yellow;">**イケメン**</font>がいいよね
+4. できたら女の子に<font style="color: yellow;">**モテそう**</font>(´･_･`)ﾃｷﾄ-
 
 |||||||||||||||
 
@@ -1127,12 +1169,15 @@ gitのコミットログを選択しながら遡ったりもできる
 <a href="https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh">git-prompt.sh</a>  
 <a href="https://github.com/git/git/blob/master/contrib/completion/git-completion.bash">git-completion.bash</a>  
 ※gitのインストールディレクトリから  
-取得した方がいいかな
+取得した方がいいと思います。
 
 |||||||||||||||
 
 ### 2.実行権限を付与
 - - -
+
+<font style="font-size: 2.0em;">
+
 ```bash
 $ chmod a+x git-prompt.sh
 $ chmod a+x git-completion.sh
@@ -1140,8 +1185,10 @@ $ chmod a+x git-completion.sh
 
 |||||||||||||||
 
-### 3.プロンプトを変更する。
+### 3.プロンプトの変更
 - - -
+
+<font style="font-size: 1.5em;">
 
 ```bash
 source $BASH_ROOT/git-completion.bash
@@ -1158,7 +1205,6 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 
 |||||||||||||||
 
-い、今のはいったい何の呪文なんだ……？？
 <img src="./img/bash/prompt_wakaran.jpg" style="width: 40%"></img>
 
 ------------------------------------------------------------
@@ -1178,19 +1224,17 @@ PS1='${debian_chroot:+($debian_chroot)}\\[\e[01:32m\\]\u\\[\e[00:37m\\\]@\h:\\[\
 
 ### 仕様
 - - -
-文字列を受け取って解析して……  
-ってのはメンドウなので、諸君らに頑張ってもらうとして。  
-
-とりあえずは、  
-01とか37とかいうのをパラメータでもらって  
+01とか37とかいうのを引数でもらって  
 中で組み上げて文字列を返せばいいよね？
 
 |||||||||||||||
 
 ### シーケンス生成関数
 - - -
+
+<font style="font-size: 1.5em;">
+
 ``` bash
-### 制御シーケンスを作ってもらうよ！
 get_sequence_style (){
   local -r font_type=$1
   local -r fg=$2
@@ -1203,13 +1247,18 @@ get_sequence_style (){
 }
 ```
 
-shellではreturnは0～255の1byte範囲の値のみ  
-文字列を返したければ、echoなどの標準出力で返す。
+</font>
+<div style="font-size: 1.0em;">
+  <!-- この空白は↑の制約 -->
+shellでは<font style="color:yellow">return</font>は0～255の<font style="color:yellow">1byte範囲</font>の値のみ  
+<font style="color:yellow">文字列</font>を返したければ、echoなどの<font style="color:yellow">標準出力で返す</font>。
 
 |||||||||||||||
 
 ### クォートの違い？
 - - -
+
+<font style="font-size: 1.5em;">
 
 ``` bash
 HELLO="Hello, Bash!."
@@ -1217,6 +1266,9 @@ echo "Double quote: ${HELLO}" # Double quote: Hello, Bash.
 echo 'Single quote: ${HELLO}' # Single quote: ${HELLO}
 ```
 
+</font>
+<font style="font-size: 1.0em;">
+  
 - ダブルクォート  
   <font style="color:yellow">変数を展開して</font>、文字列を認識する。
   
@@ -1255,9 +1307,63 @@ PS1=$(get_prompt_string)
 
 ------------------------------------------------------------
 
+### 最後に
+- - -
+
+|||||||||||||||
+
+なにかプログラムを作ったら、  
+<a href="https://github.com/">Git hub</a>へアップロードしよう！  
+<br>
+※権利的に問題ないモノに限ります。
+
+|||||||||||||||
+
+<img src="./img/git/github.jpg"></img>
+
+|||||||||||||||
+
+### git hubを利用するメリット
+- - -
+
+- いつでも「自分の環境」を引き出せる
+- gitの練習になる
+- 他の人からコード修正が来るかも？
+- いいモノ作れば、  
+  より良い会社から引き抜きオファーがあるかも？
+
+|||||||||||||||
+
+### git hubを利用する上での注意事項
+- - -
+
+- アップロードには気を付けて  
+- フォークされることもあるよ！  
+  コピーされて困るものは有料の非公開リポジトリで！
+<br>
+<br>
+当然のことばかりになってしまった感……。
+
+
+|||||||||||||||
+
+自社製品をgithub使って管理する会社もある時代  
+クラウド使えないとか<font style="color:yellow">時代遅</font>  
+<br>
+おっと、誰か来たようだ  
+※個人の感想です
+
+|||||||||||||||
+
+皆さん！！  
+今の時代、自分の<font style="color:yellow">開発環境設定</font>ぐらいは  
+<font style="color:yellow">クラウドであるべき</font>ですよ！！！！！
+
+------------------------------------------------------------
+
 <div><!-- divタグがないと以降のimgタグが正常に動かない-->
-<img src="./img/etc/thank_you_for_listening_cool_play.gif"
-     onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));"
+<img src="./img/etc/thank_you_for_listening_cool.gif"
+     onclick="this.setAttribute('src', this.getAttribute('src'), '.gif');"
      style="cursor: pointer;"></img>
 </div>
 
