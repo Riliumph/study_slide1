@@ -227,7 +227,7 @@ fish上でbashを起動するのは大変
 bash依存症の会社では無理ぽよ？  
   
   
-……fish<font style="color:yellow">“の”</font>欠点なのかコレ？？
+……fish<font style="color:yellow">“の”</font>欠点なのかコレ？？  
 
 |||||||||||||||
 
